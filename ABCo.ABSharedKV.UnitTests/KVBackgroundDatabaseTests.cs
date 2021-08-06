@@ -5,12 +5,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ABCo.ABSharedKV.UnitTests
 {
     [TestClass]
-    public class KVDatabaseBackTests
+    public class KVBackgroundDatabaseTests
     {
         [TestMethod]
         public void Get_NonExistant()
         {
-            var back = new KVDatabaseBack();
+            var back = new KVServerSegment();
             var result = back.Get("thing");
             Assert.IsNull(result);
         }
@@ -19,7 +19,7 @@ namespace ABCo.ABSharedKV.UnitTests
         public void SaveAndGet()
         {
             // Arrange
-            var back = new KVDatabaseBack();
+            var back = new KVServerSegment();
             var newData = new byte[3] { 5, 10, 15 };
             back.Set("First", newData);
 
@@ -34,7 +34,7 @@ namespace ABCo.ABSharedKV.UnitTests
         public void SaveAndGet_Multiple()
         {
             // Arrange
-            var back = new KVDatabaseBack();
+            var back = new KVServerSegment();
 
             var newData = new byte[3] { 5, 10, 15 };
             back.Set("First", newData);
@@ -53,7 +53,7 @@ namespace ABCo.ABSharedKV.UnitTests
         public void Save_Existing()
         {
             // Arrange
-            var back = new KVDatabaseBack();
+            var back = new KVServerSegment();
 
             var fakeData = new byte[3] { 15, 20, 25 };
             back.Set("First", fakeData);

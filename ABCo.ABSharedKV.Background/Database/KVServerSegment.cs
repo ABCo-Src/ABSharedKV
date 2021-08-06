@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace ABCo.ABSharedKV.Background
 {
     /// <summary>
-    /// Represents the background process part of a database.
+    /// Represents a segment loaded in memory in the background process.
     /// </summary>
-    public class KVDatabaseBack
+    public class KVServerSegment
     {
         Dictionary<string, byte[]> _keys = new();
 
-        public byte[] Get(string key)
+        public byte[]? Get(string key)
         {
             if (_keys.TryGetValue(key, out var val))
                 return val;
